@@ -2,21 +2,16 @@ class Solution {
   public:
     int getSecondLargest(vector<int> &arr) {
         // code here
-        int n=arr.size();
-        if(n<2) return -1;
-        int firstMax=INT_MIN;
-        int secondMax=INT_MIN;
-        for(int i=0; i<n; i++){
-            if(arr[i]>firstMax){
-                firstMax=arr[i];
+        int first =INT_MIN;
+        int second=INT_MIN;
+        for(int i=0; i<arr.size();i++){
+            if(arr[i]>first){
+                second=first;
+                first=arr[i];
+            }else if(arr[i]>second && arr[i]!=first){
+                second=arr[i];
             }
         }
-        for(int i=0; i<n;i++){
-            if(arr[i]!=firstMax && arr[i]>secondMax){
-                secondMax=arr[i];
-            }
-        }
-        if(secondMax==INT_MIN) return -1;
-        return secondMax;
+        return (second==INT_MIN) ? -1: second;
     }
 };
